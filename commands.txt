@@ -1,0 +1,262 @@
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("e6af8509-914c-4c05-8f79-0cbf9fe493f4") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+---
+> use mydb;
+switched to db mydb
+> db;
+mydb
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> show collections;
+> ^C
+bye
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("57f4efc9-eafd-4440-b1e3-c329b6f00091") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mydb;
+switched to db mydb
+> show collections;
+> exit
+bye
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("c72ec889-4ade-4ad0-9d99-31edab03040e") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+---
+> use mydb;
+switched to db mydb
+> db.createCollection("Student");
+{ "ok" : 1 }
+> show collections
+Student
+> show collections;
+Student
+> db.createCollection("Faculty");
+{ "ok" : 1 }
+> db.createCollection("COE");
+{ "ok" : 1 }
+> exit
+bye
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("6cad336d-351f-4f1e-80fc-79e957312bd4") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] 
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-09-24T10:38:54.871+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-09-24T10:38:57.869+0530 I CONTROL  [initandlisten] 
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+> use collegedb;
+switched to db collegedb
+> db.createCollection("Student");
+{ "ok" : 1 }
+> db.createCollection("Faculty");
+{ "ok" : 1 }
+> db.createCollection("COE");
+{ "ok" : 1 }
+> db.createCollection("Library");
+{ "ok" : 1 }
+> db.createCollection("Admission");
+{ "ok" : 1 }
+> show collections;
+Admission
+COE
+Faculty
+Library
+Student
+> db.Student.insert({_id:1,StudName:"Prateek",Grade:"X",Hobbies:"abcde"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({_id:2,StudName:"Rahul",Grade:"X",Hobbies:"Piano"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({_id:3,StudName:"wali",Grade:"X",Hobbies:"guitar"});
+WriteResult({ "nInserted" : 1 })
+> db.faculty.insert({_tid:1,TeacherName:"Pallavi G.B",subject:"BDA"});
+WriteResult({ "nInserted" : 1 })
+> db.faculty.insert({_tid:2,TeacherName:"Rajeshwari",subject:"DSR"});
+WriteResult({ "nInserted" : 1 })
+> db.faculty.insert({_tid:3,TeacherName:"Madhavi R.P",subject:"PSQ"});
+WriteResult({ "nInserted" : 1 })
+> db.faculty.insert({_tid:4,TeacherName:"Umadevi",subject:"HOD"});
+WriteResult({ "nInserted" : 1 })
+> show collections;
+Admission
+COE
+Faculty
+Library
+Student
+faculty
+> drop collection Faculty;
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:5
+> db.Faculty.drop();
+true
+> show collections;
+Admission
+COE
+Library
+Student
+faculty
+> faculty.describe();
+uncaught exception: ReferenceError: faculty is not defined :
+@(shell):1:1
+> db.faculty.describe();
+uncaught exception: TypeError: db.faculty.describe is not a function :
+@(shell):1:1
+> db.
+... 
+... ^C
+
+> db.faculty.find()
+{ "_id" : ObjectId("5f6c8994b9c7ce947b751932"), "_tid" : 1, "TeacherName" : "Pallavi G.B", "subject" : "BDA" }
+{ "_id" : ObjectId("5f6c89afb9c7ce947b751933"), "_tid" : 2, "TeacherName" : "Rajeshwari", "subject" : "DSR" }
+{ "_id" : ObjectId("5f6c89cfb9c7ce947b751934"), "_tid" : 3, "TeacherName" : "Madhavi R.P", "subject" : "PSQ" }
+{ "_id" : ObjectId("5f6c89ecb9c7ce947b751935"), "_tid" : 4, "TeacherName" : "Umadevi", "subject" : "HOD" }
+> db.Library.insert(name:"APJ Abdul Kalam",designation:"Head Librarian");
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:22
+> db.Library.insert({name:"APJ Abdul Kalam",designation:"Head Librarian"});
+WriteResult({ "nInserted" : 1 })
+> db.Library.insert({name:"Panav Mukherjee",designation:"Assistant to head librarin"});
+WriteResult({ "nInserted" : 1 })
+> db.Library.insert({name:"Sardar Vallab Bhai Patel",designation:"Recptionist"});
+WriteResult({ "nInserted" : 1 })
+> db.Library.insert({name:"Kedia",designation:"Guard"});
+WriteResult({ "nInserted" : 1 })
+> db.library.find()
+> show collections;
+Admission
+COE
+Library
+Student
+faculty
+> db.Library.find();
+{ "_id" : ObjectId("5f6c8c19b9c7ce947b751936"), "name" : "APJ Abdul Kalam", "designation" : "Head Librarian" }
+{ "_id" : ObjectId("5f6c8c37b9c7ce947b751937"), "name" : "Panav Mukherjee", "designation" : "Assistant to head librarin" }
+{ "_id" : ObjectId("5f6c8c69b9c7ce947b751938"), "name" : "Sardar Vallab Bhai Patel", "designation" : "Recptionist" }
+{ "_id" : ObjectId("5f6c8c84b9c7ce947b751939"), "name" : "Kedia", "designation" : "Guard" }
+> db.Admission.insert({id:1,type:"management quota");
+... ^C
+
+> db.Admission.insert({id:1,type:"management quota");
+... ^C
+
+> db.Admission.insert({id:1,type:"management quota"});
+WriteResult({ "nInserted" : 1 })
+> db.Admission.insert({id:2,type:"COMEDK"});
+WriteResult({ "nInserted" : 1 })
+> db.Admission.insert({id:3,type:"PUC"});
+WriteResult({ "nInserted" : 1 })
+> use collegefestivaldb;
+switched to db collegefestivaldb
+> show dbs;
+admin      0.000GB
+collegedb  0.000GB
+config     0.000GB
+local      0.000GB
+mydb       0.000GB
+> use collegedb;
+switched to db collegedb
+> show collections;
+Admission
+COE
+Library
+Student
+faculty
+> db."College Festival".insert({name:"Utsav",participants:"5000",venue:"BMS Ground"});
+uncaught exception: SyntaxError: missing name after . operator :
+@(shell):1:3
+> db["College Festival"].insert({name:"Utsav",participants:"5000",venue:"BMS Ground"});
+WriteResult({ "nInserted" : 1 })
+> db.COE.insert({name:"Uma Devi", designation:"head"});
+WriteResult({ "nInserted" : 1 })
+> db.COE.insert({name:"Uma Devi2", designation:"vice-head"});
+WriteResult({ "nInserted" : 1 })
+> db.COE.insert({name:"Uma Devi3", designation:"vice-vice-head"});
+WriteResult({ "nInserted" : 1 })
+> db.COE.insert({name:"Uma Devi4", designation:"vice-vice-vice-head"});
+WriteResult({ "nInserted" : 1 })
+> show collections;
+Admission
+COE
+College Festival
+Library
+Student
+faculty
+> db.Student.find();
+{ "_id" : 1, "StudName" : "Prateek", "Grade" : "X", "Hobbies" : "abcde" }
+{ "_id" : 2, "StudName" : "Rahul", "Grade" : "X", "Hobbies" : "Piano" }
+{ "_id" : 3, "StudName" : "wali", "Grade" : "X", "Hobbies" : "guitar" }
+> db.faculty().find();
+uncaught exception: TypeError: db.faculty is not a function :
+@(shell):1:1
+> db.faculty.find();
+{ "_id" : ObjectId("5f6c8994b9c7ce947b751932"), "_tid" : 1, "TeacherName" : "Pallavi G.B", "subject" : "BDA" }
+{ "_id" : ObjectId("5f6c89afb9c7ce947b751933"), "_tid" : 2, "TeacherName" : "Rajeshwari", "subject" : "DSR" }
+{ "_id" : ObjectId("5f6c89cfb9c7ce947b751934"), "_tid" : 3, "TeacherName" : "Madhavi R.P", "subject" : "PSQ" }
+{ "_id" : ObjectId("5f6c89ecb9c7ce947b751935"), "_tid" : 4, "TeacherName" : "Umadevi", "subject" : "HOD" }
+> db.COE.find();
+{ "_id" : ObjectId("5f6c902cb9c7ce947b75193e"), "name" : "Uma Devi", "designation" : "head" }
+{ "_id" : ObjectId("5f6c903ab9c7ce947b75193f"), "name" : "Uma Devi2", "designation" : "vice-head" }
+{ "_id" : ObjectId("5f6c9048b9c7ce947b751940"), "name" : "Uma Devi3", "designation" : "vice-vice-head" }
+{ "_id" : ObjectId("5f6c9059b9c7ce947b751941"), "name" : "Uma Devi4", "designation" : "vice-vice-vice-head" }
+> db["College Festival"].find()
+{ "_id" : ObjectId("5f6c8ffab9c7ce947b75193d"), "name" : "Utsav", "participants" : "5000", "venue" : "BMS Ground" }
+> db.Library.find();
+{ "_id" : ObjectId("5f6c8c19b9c7ce947b751936"), "name" : "APJ Abdul Kalam", "designation" : "Head Librarian" }
+{ "_id" : ObjectId("5f6c8c37b9c7ce947b751937"), "name" : "Panav Mukherjee", "designation" : "Assistant to head librarin" }
+{ "_id" : ObjectId("5f6c8c69b9c7ce947b751938"), "name" : "Sardar Vallab Bhai Patel", "designation" : "Recptionist" }
+{ "_id" : ObjectId("5f6c8c84b9c7ce947b751939"), "name" : "Kedia", "designation" : "Guard" }
