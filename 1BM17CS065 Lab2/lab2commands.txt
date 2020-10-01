@@ -1,0 +1,256 @@
+ use employee;
+switched to db employee
+> use company;
+switched to db company
+> db.createCollection("employee");
+{ "ok" : 1 }
+> db.createCollection("department");
+{ "ok" : 1 }
+> show collections;
+department
+employee
+> db.department.insert({id:1,name:"Computer Science and Engineering",code:"CSE"});
+WriteResult({ "nInserted" : 1 })
+> db.department.insertMany({id:2,name:"Information Science and Engineering", code:"ISE",HOD:"xyz"},{id:3, name:"Electronics and Communication Engineering",code:"ECE", HOD:"xyz"},{id:4,name:"Mechanical Engineering", code:"ME", HOD:"xyz"});
+uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.department.insertMany([{id:2,name:"Information Science and Engineering", code:"ISE",HOD:"xyz"},{id:3, name:"Electronics and Communication Engineering",code:"ECE", HOD:"xyz"},{id:4,name:"Mechanical Engineering", code:"ME", HOD:"xyz"});
+... 
+... ^C
+
+> db.department.find()
+{ "_id" : ObjectId("5f759995193825c1a0449b4a"), "id" : 1, "name" : "Computer Science and Engineering", "code" : "CSE" }
+> db.department.insert({_id:2,name"Information Science and Engineering", code:"ISE",hod:"XYZ"});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:32
+> db.department.insert({_id:2,name:"Information Science and Engineering", code:"ISE",hod:"XYZ"});
+WriteResult({ "nInserted" : 1 })
+> db.department.insert({_id:3,name:"Electronics and Communication and Engineering", code:"ECE",hod:"XYZ"});
+WriteResult({ "nInserted" : 1 })
+> db.department.find()
+{ "_id" : ObjectId("5f759995193825c1a0449b4a"), "id" : 1, "name" : "Computer Science and Engineering", "code" : "CSE" }
+{ "_id" : 2, "name" : "Information Science and Engineering", "code" : "ISE", "hod" : "XYZ" }
+{ "_id" : 3, "name" : "Electronics and Communication and Engineering", "code" : "ECE", "hod" : "XYZ" }
+> db.department.find().pretty()
+{
+	"_id" : ObjectId("5f759995193825c1a0449b4a"),
+	"id" : 1,
+	"name" : "Computer Science and Engineering",
+	"code" : "CSE"
+}
+{
+	"_id" : 2,
+	"name" : "Information Science and Engineering",
+	"code" : "ISE",
+	"hod" : "XYZ"
+}
+{
+	"_id" : 3,
+	"name" : "Electronics and Communication and Engineering",
+	"code" : "ECE",
+	"hod" : "XYZ"
+}
+> db.department.insert({_id:4,name:"Mechanical Engineering",code:"ME',hod:"XYZ"});
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:73
+> db.department.insert({_id:4,name:"Mechanical Engineering",code:"ME',hod:"XYX"});
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:73
+> db.department.insert({_id:4,name:"Mechanical Engineering", code:"ME",hod:"XYZ"});
+WriteResult({ "nInserted" : 1 })
+> db.department.insert({_id:5,name:"Medical Electronis", code:"MI",hod:"XYZ"});
+WriteResult({ "nInserted" : 1 })
+> db.department.find().pretty()
+{
+	"_id" : ObjectId("5f759995193825c1a0449b4a"),
+	"id" : 1,
+	"name" : "Computer Science and Engineering",
+	"code" : "CSE"
+}
+{
+	"_id" : 2,
+	"name" : "Information Science and Engineering",
+	"code" : "ISE",
+	"hod" : "XYZ"
+}
+{
+	"_id" : 3,
+	"name" : "Electronics and Communication and Engineering",
+	"code" : "ECE",
+	"hod" : "XYZ"
+}
+{
+	"_id" : 4,
+	"name" : "Mechanical Engineering",
+	"code" : "ME",
+	"hod" : "XYZ"
+}
+{ "_id" : 5, "name" : "Medical Electronis", "code" : "MI", "hod" : "XYZ" }
+> db.employee.insert({_id:1,name:"Prateek Aryan", designation:"Manager"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({_id:2,name:"Saifur Rahman",desination:"CTO"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({_id:3,name:"Mayank Wali",designation:"CEO"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({_id:4,name:"Srishti Rathi",designation:"Assistant to Manager"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({_id:5,name:"Harshwardhan",designation:"Assosciate Manager"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.find().pretty();
+{ "_id" : 1, "name" : "Prateek Aryan", "designation" : "Manager" }
+{ "_id" : 2, "name" : "Saifur Rahman", "desination" : "CTO" }
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{
+	"_id" : 4,
+	"name" : "Srishti Rathi",
+	"designation" : "Assistant to Manager"
+}
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+> db.employee.update({_id:1},{$set:{dob:"22.10.1998"}},{upsert:true});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.employee.find().pretty();
+{
+	"_id" : 1,
+	"name" : "Prateek Aryan",
+	"designation" : "Manager",
+	"dob" : "22.10.1998"
+}
+{ "_id" : 2, "name" : "Saifur Rahman", "desination" : "CTO" }
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{
+	"_id" : 4,
+	"name" : "Srishti Rathi",
+	"designation" : "Assistant to Manager"
+}
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+> db.employee.save({name:"Satyam",designation:"CFO"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.find()
+{ "_id" : 1, "name" : "Prateek Aryan", "designation" : "Manager", "dob" : "22.10.1998" }
+{ "_id" : 2, "name" : "Saifur Rahman", "desination" : "CTO" }
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{ "_id" : 4, "name" : "Srishti Rathi", "designation" : "Assistant to Manager" }
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+{ "_id" : ObjectId("5f75a202193825c1a0449b4b"), "name" : "Satyam", "designation" : "CFO" }
+> db.collection.find()
+> 
+> db.employee.update({_id:6,name:"Neha",designation:"xyz"},{upsert:false});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.employee.update({_id:6,name:"Neha",designation:"xyz"},{upsert:true});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.employee.find()
+{ "_id" : 1, "name" : "Prateek Aryan", "designation" : "Manager", "dob" : "22.10.1998" }
+{ "_id" : 2, "name" : "Saifur Rahman", "desination" : "CTO" }
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{ "_id" : 4, "name" : "Srishti Rathi", "designation" : "Assistant to Manager" }
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+{ "_id" : ObjectId("5f75a202193825c1a0449b4b"), "name" : "Satyam", "designation" : "CFO" }
+> db.employee.update({_id:6,name:"Neha",designation:"xyz"},{$set:{}},{upsert:true});
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "'$set' is empty. You must specify a field like so: {$set: {<field>: ...}}"
+	}
+})
+> db.employee.update({_id:6},{$set:{name:"neha",designation:"xyz"}},{upsert:false});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.employee.update({_id:6},{$set:{name:"neha",designation:"xyz"}},{upsert:true});
+WriteResult({ "nMatched" : 0, "nUpserted" : 1, "nModified" : 0, "_id" : 6 })
+> db.employee.find().pretty()
+{
+	"_id" : 1,
+	"name" : "Prateek Aryan",
+	"designation" : "Manager",
+	"dob" : "22.10.1998"
+}
+{ "_id" : 2, "name" : "Saifur Rahman", "desination" : "CTO" }
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{
+	"_id" : 4,
+	"name" : "Srishti Rathi",
+	"designation" : "Assistant to Manager"
+}
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+{
+	"_id" : ObjectId("5f75a202193825c1a0449b4b"),
+	"name" : "Satyam",
+	"designation" : "CFO"
+}
+{ "_id" : 6, "designation" : "xyz", "name" : "neha" }
+> db.employee.update({_id:1},{$unset:{dob:"22.10.1998"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.employee.find(_id:1);
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:20
+> db.employee.find({_id:1});
+{ "_id" : 1, "name" : "Prateek Aryan", "designation" : "Manager" }
+> db.employee.find().pretty()
+{ "_id" : 1, "name" : "Prateek Aryan", "designation" : "Manager" }
+{ "_id" : 2, "name" : "Saifur Rahman", "desination" : "CTO" }
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{
+	"_id" : 4,
+	"name" : "Srishti Rathi",
+	"designation" : "Assistant to Manager"
+}
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+{
+	"_id" : ObjectId("5f75a202193825c1a0449b4b"),
+	"name" : "Satyam",
+	"designation" : "CFO"
+}
+{ "_id" : 6, "designation" : "xyz", "name" : "neha" }
+> db.department.find().pretty()
+{
+	"_id" : ObjectId("5f759995193825c1a0449b4a"),
+	"id" : 1,
+	"name" : "Computer Science and Engineering",
+	"code" : "CSE"
+}
+{
+	"_id" : 2,
+	"name" : "Information Science and Engineering",
+	"code" : "ISE",
+	"hod" : "XYZ"
+}
+{
+	"_id" : 3,
+	"name" : "Electronics and Communication and Engineering",
+	"code" : "ECE",
+	"hod" : "XYZ"
+}
+{
+	"_id" : 4,
+	"name" : "Mechanical Engineering",
+	"code" : "ME",
+	"hod" : "XYZ"
+}
+{ "_id" : 5, "name" : "Medical Electronis", "code" : "MI", "hod" : "XYZ" }
+> db.employees.find({_id:{gte:5}});
+> db.employees.find({_id:{gte:3}});
+> db.employees.find({_id:{$gte:3}});
+> db.employees.find({_id:{$gte:3}}).pretty();
+> db.employee.find({_id:{$gte:3}}).pretty();
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{
+	"_id" : 4,
+	"name" : "Srishti Rathi",
+	"designation" : "Assistant to Manager"
+}
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+{ "_id" : 6, "designation" : "xyz", "name" : "neha" }
+> db.employee.find({_id:{$gte:3,$lte:5}}).pretty();
+{ "_id" : 3, "name" : "Mayank Wali", "designation" : "CEO" }
+{
+	"_id" : 4,
+	"name" : "Srishti Rathi",
+	"designation" : "Assistant to Manager"
+}
+{ "_id" : 5, "name" : "Harshwardhan", "designation" : "Assosciate Manager" }
+> db.employee.find({name:/^n/});
+{ "_id" : 6, "designation" : "xyz", "name" : "neha" }
+> AAAAAAAAAAA
