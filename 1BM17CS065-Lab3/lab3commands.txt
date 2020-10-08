@@ -1,0 +1,615 @@
+
+> show dbs
+admin      0.000GB
+collegedb  0.000GB
+company    0.000GB
+config     0.000GB
+local      0.000GB
+mydb       0.000GB
+> use collegedb
+switched to db collegedb
+> show collections;
+Admission
+COE
+College Festival
+Library
+Student
+faculty
+> db.collections.find()
+> db.Student.find()
+{ "_id" : 1, "StudName" : "Prateek", "Grade" : "X", "Hobbies" : "abcde" }
+{ "_id" : 2, "StudName" : "Rahul", "Grade" : "X", "Hobbies" : "Piano" }
+{ "_id" : 3, "StudName" : "wali", "Grade" : "X", "Hobbies" : "guitar" }
+> db.Student.drop()
+true
+> show collections;
+Admission
+COE
+College Festival
+Library
+faculty
+> db.createCollection("Student");
+{ "ok" : 1 }
+> db.Student.insert([{"Rollno.": 1,"Age":21,"ContactNO.":"99999999","Email-id:"prateek@gmail.com"},{"Rollno.":2,"Age":21,"Contact No.":"8888844444","Email-id":"rahul@gmail.com"}]);
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:77
+> db.Student.insert({"Rollno.": 1,"Age":21,"ContactNO.":"99999999","Email-id:"prateek@gmail.com"});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:76
+> db.Student.insert({"Rollno.": 1,"Age":21,"ContactNO.":"99999999","Email-id:"prateek@gmail.com"});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:76
+> db.Student.insert({"Rollno.": 1,"Age":21,"ContactNO.":"99999999","Email-id":prateek@gmail.com"});
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:83
+> db.Student.insert({"Rollno.": 1,"Age":21,"ContactNO.":"99999999","Email-id":"prateek@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"Rollno.": 2,"Age":21,"ContactNO.":"888884444","Email-id":"rahul@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"Rollno.": 3,"Age":21,"ContactNO.":"5555554444","Email-id":"saif@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"Rollno.": 4,"Age":21,"ContactNO.":"555588894","Email-id":"walif@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"Rollno.": 5,"Age":21,"ContactNO.":"222588894","Email-id":"parth@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.update({"Rollno.":10},{$set:{"Email-id":"satyam@gmail.com"}});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Student.update({"Rollno.":5},{$set:{"Email-id":"satyam@gmail.com"}});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Student.find({"Rollno.":5});
+> db.Student.find()
+{ "_id" : ObjectId("5f7ed4b72f0d40f00b381cf4"), "Rollno." : 1, "Age" : 21, "ContactNO." : "99999999", "Email-id" : "prateek@gmail.com" }
+{ "_id" : ObjectId("5f7ed4cc2f0d40f00b381cf5"), "Rollno." : 2, "Age" : 21, "ContactNO." : "888884444", "Email-id" : "rahul@gmail.com" }
+{ "_id" : ObjectId("5f7ed4e22f0d40f00b381cf6"), "Rollno." : 3, "Age" : 21, "ContactNO." : "5555554444", "Email-id" : "saif@gmail.com" }
+{ "_id" : ObjectId("5f7ed4f62f0d40f00b381cf7"), "Rollno." : 4, "Age" : 21, "ContactNO." : "555588894", "Email-id" : "walif@gmail.com" }
+{ "_id" : ObjectId("5f7ed50a2f0d40f00b381cf8"), "Rollno." : 5, "Age" : 21, "ContactNO." : "222588894", "Email-id" : "parth@gmail.com" }
+> db.Student.find({"Rollno.":5});
+> db.Student.find({"Rollno.":4});
+> db.Student.find({"Rollno.":4}).pretty();
+> db.Student.find({},{"Rollno.":4}).pretty();
+{ "_id" : ObjectId("5f7ed4b72f0d40f00b381cf4") }
+{ "_id" : ObjectId("5f7ed4cc2f0d40f00b381cf5") }
+{ "_id" : ObjectId("5f7ed4e22f0d40f00b381cf6") }
+{ "_id" : ObjectId("5f7ed4f62f0d40f00b381cf7") }
+{ "_id" : ObjectId("5f7ed50a2f0d40f00b381cf8") }
+> db.Student.find({},{"Rollno.":10});
+{ "_id" : ObjectId("5f7ed4b72f0d40f00b381cf4") }
+{ "_id" : ObjectId("5f7ed4cc2f0d40f00b381cf5") }
+{ "_id" : ObjectId("5f7ed4e22f0d40f00b381cf6") }
+{ "_id" : ObjectId("5f7ed4f62f0d40f00b381cf7") }
+{ "_id" : ObjectId("5f7ed50a2f0d40f00b381cf8") }
+> db.Student.find({"Rollno.":10});
+> db.Student.find({"Rollno.":10}.{});
+uncaught exception: SyntaxError: missing name after . operator :
+@(shell):1:31
+> db.Student.find({"Rollno.":10},{});
+> db.Student.update({"Rollno.":5},{$set:{"Email-id":"satyam@gmail.com"}});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Student.find({"Rollno.":{eq:10});
+... ^C
+
+> db.Student.find({"Rollno.":{$eq:10}});
+> db.Student.find({"Rollno.":{$eq:4}});
+> db.Student.find({"Rollno.": 4});
+> db.Student.find.pretty()
+uncaught exception: TypeError: db.Student.find.pretty is not a function :
+@(shell):1:1
+> db.Student.find().pretty();
+{
+	"_id" : ObjectId("5f7ed4b72f0d40f00b381cf4"),
+	"Rollno." : 1,
+	"Age" : 21,
+	"ContactNO." : "99999999",
+	"Email-id" : "prateek@gmail.com"
+}
+{
+	"_id" : ObjectId("5f7ed4cc2f0d40f00b381cf5"),
+	"Rollno." : 2,
+	"Age" : 21,
+	"ContactNO." : "888884444",
+	"Email-id" : "rahul@gmail.com"
+}
+{
+	"_id" : ObjectId("5f7ed4e22f0d40f00b381cf6"),
+	"Rollno." : 3,
+	"Age" : 21,
+	"ContactNO." : "5555554444",
+	"Email-id" : "saif@gmail.com"
+}
+{
+	"_id" : ObjectId("5f7ed4f62f0d40f00b381cf7"),
+	"Rollno." : 4,
+	"Age" : 21,
+	"ContactNO." : "555588894",
+	"Email-id" : "walif@gmail.com"
+}
+{
+	"_id" : ObjectId("5f7ed50a2f0d40f00b381cf8"),
+	"Rollno." : 5,
+	"Age" : 21,
+	"ContactNO." : "222588894",
+	"Email-id" : "parth@gmail.com"
+}
+> db.Student.update({"Rollno.":2},{$set:{"Email-id":"p@gmail.com"}});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Student.update({"Rollno.":{$eq:2}},{$set:{"Email-id":"p@gmail.com"}});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Student.insert({"roll":1,"_id":2});
+WriteResult({ "nInserted" : 1 })
+> db.Student.find()
+{ "_id" : ObjectId("5f7ed4b72f0d40f00b381cf4"), "Rollno." : 1, "Age" : 21, "ContactNO." : "99999999", "Email-id" : "prateek@gmail.com" }
+{ "_id" : ObjectId("5f7ed4cc2f0d40f00b381cf5"), "Rollno." : 2, "Age" : 21, "ContactNO." : "888884444", "Email-id" : "rahul@gmail.com" }
+{ "_id" : ObjectId("5f7ed4e22f0d40f00b381cf6"), "Rollno." : 3, "Age" : 21, "ContactNO." : "5555554444", "Email-id" : "saif@gmail.com" }
+{ "_id" : ObjectId("5f7ed4f62f0d40f00b381cf7"), "Rollno." : 4, "Age" : 21, "ContactNO." : "555588894", "Email-id" : "walif@gmail.com" }
+{ "_id" : ObjectId("5f7ed50a2f0d40f00b381cf8"), "Rollno." : 5, "Age" : 21, "ContactNO." : "222588894", "Email-id" : "parth@gmail.com" }
+{ "_id" : 2, "roll" : 1 }
+> db.Student.find({"roll":1});
+{ "_id" : 2, "roll" : 1 }
+> db.Student.find({"Rollno.":"2"})
+> db.Student.find({"Rollno.":{$eq:2}})
+> db.Student.drop()
+true
+> db.createCollection("Student");
+{ "ok" : 1 }
+> db.Student.insert({"_id":1,"roll":1,name:"prateek","age":21,"email":"prateek@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"_id":2,"roll":2,name:"rahul;","age":21,"email":"rahul@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"_id":3,"roll":10,name:"saif;","age":21,"email":"saif@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.insert({"_id":4,"roll":14,name:"wali;","age":21,"email":"wali@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.Student.find()
+{ "_id" : 1, "roll" : 1, "name" : "prateek", "age" : 21, "email" : "prateek@gmail.com" }
+{ "_id" : 2, "roll" : 2, "name" : "rahul;", "age" : 21, "email" : "rahul@gmail.com" }
+{ "_id" : 3, "roll" : 10, "name" : "saif;", "age" : 21, "email" : "saif@gmail.com" }
+{ "_id" : 4, "roll" : 14, "name" : "wali;", "age" : 21, "email" : "wali@gmail.com" }
+> db.Student.update({"roll":10},{$set:{"email":"saifnew@gmail.com"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Student.find({"roll":10})
+{ "_id" : 3, "roll" : 10, "name" : "saif;", "age" : 21, "email" : "saifnew@gmail.com" }
+> db.Student.update({"name":"wali"},{$set:{"name":"walinew"}});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Student.update({"name":"wali;"},{$set:{"name":"walinew"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> ^C
+bye
+prateek@ubuntu:~$ Mongo
+
+Command 'Mongo' not found, did you mean:
+
+  command 'mongo' from deb mongodb-clients
+
+Try: sudo apt install <deb name>
+
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("ad74dbee-4ccb-4bd9-ad5c-94d8195b0700") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+---
+> show dbs
+admin      0.000GB
+collegedb  0.000GB
+company    0.000GB
+config     0.000GB
+local      0.000GB
+mydb       0.000GB
+> ^C
+bye
+prateek@ubuntu:~$ mongoexport --db collegedb --collection Student --csv --fieldFile output.txt --out output.txt
+2020-10-08T15:03:40.562+0530	csv flag is deprecated; please use --type=csv instead
+2020-10-08T15:03:40.565+0530	connected to: localhost
+2020-10-08T15:03:40.566+0530	exported 4 records
+prateek@ubuntu:~$ cat output.txt
+
+
+
+
+
+prateek@ubuntu:~$ ls
+ Android                          matlab
+ AndroidStudio                    Music
+ AndroidStudioProjects            MyAttendenceManager.DB
+ blender                          output.txt
+ blender-2.83.1-linux64           Pictures
+ conference-app                   Projects
+ core                             Public
+ Desktop                          rstudio-server-1.3.1093-amd64.deb
+ django                           skypeforlinux-64.rpm
+ Documents                        snap
+ Downloads                        softwares
+ java_error_in_STUDIO_17751.log  'stock market'
+ java_error_in_STUDIO_27942.log   Templates
+ java_error_in_STUDIO_3048.log    usr
+ jupyter                          Videos
+ learn1                           virtualenv
+ mad                              youtube
+ manim
+prateek@ubuntu:~$ nano output.txt
+prateek@ubuntu:~$ mongoexport --db collegedb --collection Student --type=csv --fieldFile output.txt --out output.txt
+2020-10-08T15:04:47.280+0530	connected to: localhost
+2020-10-08T15:04:47.282+0530	exported 4 records
+prateek@ubuntu:~$ cat output.txt
+
+
+
+
+
+prateek@ubuntu:~$ mongoexport -d Student -c details -f name,age,contactNO,emailId --csv -o student.csv 
+2020-10-08T15:08:12.542+0530	csv flag is deprecated; please use --type=csv instead
+2020-10-08T15:08:12.549+0530	connected to: localhost
+2020-10-08T15:08:12.550+0530	exported 0 records
+prateek@ubuntu:~$ mongoexport -d Student -c details -f name,age,contactNO,emailId --type=csv -o student.csv 
+2020-10-08T15:08:24.662+0530	connected to: localhost
+2020-10-08T15:08:24.663+0530	exported 0 records
+prateek@ubuntu:~$ mongoexport -d collegedb -c Student -f name,age,contactNO,emailId --type=csv -o student.csv 
+2020-10-08T15:08:43.450+0530	connected to: localhost
+2020-10-08T15:08:43.451+0530	exported 4 records
+prateek@ubuntu:~$ cat student.csv 
+name,age,contactNO,emailId
+prateek,21,,
+rahul;,21,,
+saif;,21,,
+walinew,21,,
+
+
+> db.Student.drop()
+false
+> show dbs
+admin      0.000GB
+collegedb  0.000GB
+company    0.000GB
+config     0.000GB
+local      0.000GB
+mydb       0.000GB
+> use collegedb
+switched to db collegedb
+> db.Student.drop()
+true
+> ^C
+bye
+prateek@ubuntu:~$ mongoexport -d collegedb -c Student --type=csv -headerline --file student.csv
+2020-10-08T15:12:59.739+0530	error parsing command line options: unknown option "file"
+2020-10-08T15:12:59.740+0530	try 'mongoexport --help' for more information
+prateek@ubuntu:~$ mongoimport -d collegedb -c Student --type=csv -headerline --file student.csv
+2020-10-08T15:13:19.384+0530	error validating settings: must specify --fields, --fieldFile or --headerline to import this file type
+2020-10-08T15:13:19.384+0530	try 'mongoimport --help' for more information
+prateek@ubuntu:~$ mongoexport -d collegedb -c Student -f name,age,email --type=csv -headerline --file student.csv
+2020-10-08T15:14:40.125+0530	error parsing command line options: unknown option "file"
+2020-10-08T15:14:40.126+0530	try 'mongoexport --help' for more information
+prateek@ubuntu:~$ mongoimport -d collegedb -c Student -f name,age,email --type=csv -headerline --file student.csv
+2020-10-08T15:14:59.679+0530	[........................] collegedb.Student	0B/76B (0.0%)
+2020-10-08T15:15:00.325+0530	[........................] collegedb.Student	0B/76B (0.0%)
+2020-10-08T15:15:00.325+0530	Failed: error connecting to db server: no reachable servers
+2020-10-08T15:15:00.325+0530	imported 0 documents
+prateek@ubuntu:~$ mongoimport -d collegedb -c Student -f name,age,email --type=csv -headerline --file student.csv
+2020-10-08T15:15:21.367+0530	[........................] collegedb.Student	0B/76B (0.0%)
+2020-10-08T15:15:21.881+0530	[........................] collegedb.Student	0B/76B (0.0%)
+2020-10-08T15:15:21.881+0530	Failed: error connecting to db server: no reachable servers
+2020-10-08T15:15:21.881+0530	imported 0 documents
+prateek@ubuntu:~$ mongo
+
+---
+---
+> use collegedb
+switched to db collegedb
+> show collections
+Admission
+COE
+College Festival
+Library
+faculty
+> ^C
+bye
+prateek@ubuntu:~$ mongo
+
+> db.createCollection("Customers");
+{ "ok" : 1 }
+> db.Customers.insert{"_id":1,"custid":1,"accountbalance":2000,"acctype":"saving"});
+uncaught exception: SyntaxError: unexpected token: '{' :
+@(shell):1:19
+> db.Customers.insert({"_id":1,"custid":1,"accountbalance":2000,"acctype":"saving"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.insert({"_id"21,"custid":2,"accountbalance":400,"acctype":"saving"});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:26
+> db.Customers.insert({"_id":2,"custid":2,"accountbalance":400,"acctype":"saving"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.insert({"_id":3,"custid":3,"accountbalance":5000,"acctype":"saving"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.insert({"_id":4,"custid":4,"accountbalance":50000,"acctype":"saving"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.insert({"_id":5,"custid":5,"accountbalance":500000,"acctype":"saving"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.find({"accounbalance":
+... ^C
+
+> db.Customers.find({"accountbalance":{$gte:1200}},{"acctype":"saving"});
+{ "_id" : 1, "acctype" : "saving" }
+{ "_id" : 3, "acctype" : "saving" }
+{ "_id" : 4, "acctype" : "saving" }
+{ "_id" : 5, "acctype" : "saving" }
+> db.Customers.find({"accountbalance":{$gte:50000}},{"acctype":"saving"});
+{ "_id" : 4, "acctype" : "saving" }
+{ "_id" : 5, "acctype" : "saving" }
+> db.Customers.find({"accountbalance":{$gte:50000}},{"acctype"}});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:60
+> db.Customers.find({"accountbalance":{$gte:50000},{"acctype":"closing"}});
+uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:49
+> db.Customers.find({"accountbalance":{$gte:50000},{"acctype":"closing"});
+... ^C
+
+> db.Customers.find({"accountbalance":{$gte:50000},{"acctype":"saving"}});
+uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:49
+> db.Customers.find({"accountbalance":{$gte:50000}},{"acctype":"saving"});
+{ "_id" : 4, "acctype" : "saving" }
+{ "_id" : 5, "acctype" : "saving" }
+> db.Customers.find({"accountbalance":{$gte:50000}});
+{ "_id" : 4, "custid" : 4, "accountbalance" : 50000, "acctype" : "saving" }
+{ "_id" : 5, "custid" : 5, "accountbalance" : 500000, "acctype" : "saving" }
+> db.Customers.find({"accountbalance":{$gte:50000},"acctype":"saving"});
+{ "_id" : 4, "custid" : 4, "accountbalance" : 50000, "acctype" : "saving" }
+{ "_id" : 5, "custid" : 5, "accountbalance" : 500000, "acctype" : "saving" }
+> db.Customers.insert({"_id":5,"custid":5,"accountbalance":50000,"acctype":"closing"});
+WriteResult({
+	"nInserted" : 0,
+	"writeError" : {
+		"code" : 11000,
+		"errmsg" : "E11000 duplicate key error collection: test.Customers index: _id_ dup key: { : 5.0 }"
+	}
+})
+> db.Customers.insert({"_id":6,"custid":6,"accountbalance":50000,"acctype":"closing"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.find({"accountbalance":{$gte:50000},"acctype":"saving"});
+{ "_id" : 4, "custid" : 4, "accountbalance" : 50000, "acctype" : "saving" }
+{ "_id" : 5, "custid" : 5, "accountbalance" : 500000, "acctype" : "saving" }
+> db.Customers.find({"accountbalance":{$gte:50000},"acctype":"saving"});
+{ "_id" : 4, "custid" : 4, "accountbalance" : 50000, "acctype" : "saving" }
+{ "_id" : 5, "custid" : 5, "accountbalance" : 500000, "acctype" : "saving" }
+> db.Customers.find({"accountbalance":{$gte:50000},{"acctype":"saving"}});
+uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:49
+> db.Customers.find({"accountbalance":{$gte:50000},"acctype":"saving"});
+{ "_id" : 4, "custid" : 4, "accountbalance" : 50000, "acctype" : "saving" }
+{ "_id" : 5, "custid" : 5, "accountbalance" : 500000, "acctype" : "saving" }
+> db.Customers.insert({"_id":7,"custid":5,"accountbalance":90000,"acctype":closing"});
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:84
+> db.Customers.insert({"_id":7,"custid":5,"accountbalance":90000,"acctype":"closing"});
+WriteResult({ "nInserted" : 1 })
+> db.Customers.find()
+{ "_id" : 1, "custid" : 1, "accountbalance" : 2000, "acctype" : "saving" }
+{ "_id" : 2, "custid" : 2, "accountbalance" : 400, "acctype" : "saving" }
+{ "_id" : 3, "custid" : 3, "accountbalance" : 5000, "acctype" : "saving" }
+{ "_id" : 4, "custid" : 4, "accountbalance" : 50000, "acctype" : "saving" }
+{ "_id" : 5, "custid" : 5, "accountbalance" : 500000, "acctype" : "saving" }
+{ "_id" : 6, "custid" : 6, "accountbalance" : 50000, "acctype" : "closing" }
+{ "_id" : 7, "custid" : 5, "accountbalance" : 90000, "acctype" : "closing" }
+> db.customers.aggregate([{$group:{id:{"$custid},min:{$min:"$accountbalance"}])
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:58
+> db.customers.aggregate([{$group:{id:{"$custid},min:{$min:"$accountbalance"}}}])
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:58
+> db.customers.aggregate([{$group:{id:"$custid,min:{$min:"$accountbalance"}}}])
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:56
+> db.customers.aggregate({$group:{id:"$custid",min:{$min:"$accountbalance"}});}
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:74
+> db.customers.aggregate({$group:{"id":"$custid","min":{$min:"$accountbalance"}});}
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:78
+> db.customers.aggregate({$group:{"id":"$custid","min":{$min:"$accountbalance"}});
+... db.customers.aggregate({$group:{"id":"$custid","min":{$min:"$accountbalance"}});}^C
+
+> db.customers.aggregate({$group:{id:"$custid",min:{$min:"$accountbalance"}});
+
+... ^C
+
+> db.Customers.aggregate({$group:{"id":"$custid","min":{$min:"$accountbalance"}});}
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:78
+> db.Customers.aggregate({$group:{"id":"$custid","min":{$min:"$accountbalance"}});
+... ^C
+
+> db.Customers.aggregate([{$group:{id:"$custid",min:{$min:"$accountbalance"}}]);
+... ^C
+
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}});}
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:77
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}});
+... ^C
+
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}})
+... ^C
+
+> db.Customers.aggregate({$group:{_id:"$custid",min:{$min:"$accountbalance"}});
+... 
+... 
+> 
+> 
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}}).pretty()
+... ^C
+
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}}).result()
+... ^C
+
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}}).result;
+... ^C
+
+> db.Customers.aggregate({$group:{_id:"$custid","min":{$min:"$accountbalance"}}).result();
+... 
+... 
+> ^C
+bye
+prateek@ubuntu:~$ mongoimport --db collegedb --colection Student --file student.csv
+2020-10-08T15:59:35.775+0530	error parsing command line options: unknown option "colection"
+2020-10-08T15:59:35.775+0530	try 'mongoimport --help' for more information
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("24a9b50d-01ab-47a9-87aa-a1dda35cfa75") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+---
+> show dbs
+admin      0.000GB
+collegedb  0.000GB
+company    0.000GB
+config     0.000GB
+local      0.000GB
+mydb       0.000GB
+test       0.000GB
+> use collegedb
+switched to db collegedb
+> show collections
+Admission
+COE
+College Festival
+Library
+faculty
+> ^C
+bye
+prateek@ubuntu:~$ mongoimport -d collegedb -c Student --type csv --file student.csv --headerlin
+2020-10-08T16:01:50.568+0530	error parsing command line options: unknown option "headerlin"
+2020-10-08T16:01:50.569+0530	try 'mongoimport --help' for more information
+prateek@ubuntu:~$ mongoimport -d collegedb -c Student --type csv --file student.csv --headerline
+2020-10-08T16:01:52.805+0530	connected to: localhost
+2020-10-08T16:01:53.047+0530	imported 4 documents
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("86998b1a-a8be-4d88-8dce-4d83ab7d3c2b") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+---
+> use collegedb
+switched to db collegedb
+> show collections
+Admission
+COE
+College Festival
+Library
+Student
+faculty
+> ^C
+bye
+prateek@ubuntu:~$ mongoimport -d collegedb -c Student --type csv --file student.csv 
+2020-10-08T16:04:53.380+0530	error validating settings: must specify --fields, --fieldFile or --headerline to import this file type
+2020-10-08T16:04:53.380+0530	try 'mongoimport --help' for more information
+prateek@ubuntu:~$ ^C
+prateek@ubuntu:~$ mongo
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("651b2bae-31a9-48d0-9a35-4db8338438ca") }
+MongoDB server version: 3.6.3
+WARNING: shell and server versions do not match
+---
+The server generated these startup warnings when booting: 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] 
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-10-08T11:22:08.472+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-10-08T11:22:36.086+0530 I CONTROL  [initandlisten] 
+---
+> use collegedb
+switched to db collegedb
+> db.Customers.aggregate(
+...    [
+...      {
+...        $group:
+...          {
+...            "_id": "$custd",
+...            "max_bal": { $max: "$accountbalance" },
+...            "min_bal": { $min: "$accountbalance" }
+...          }
+...      }
+...    ]
+... );
+> 
+> db.Customers.aggregate(
+...    [
+...      {
+...        $group:
+...          {
+...            "_id": "$custd",
+...            "max_bal": { $max: "$accountbalance" },
+...            "min_bal": { $min: "$accountbalance" }
+...          }
+...      }
+...    ]
+... );
+> db.Customers.aggregate(    [      {        $group:          {            "_id": "$custid",            "max_bal": { $max: "$accountbalance" },            "min_bal": { $min: "$accountbalance" }          }      }    ] );
+> db.Customers.find()
+> show collections;
+Admission
+COE
+College Festival
+Library
+Student
+faculty
+> ^C
+bye
+prateek@ubuntu:~$ mongi
+
+Command 'mongi' not found, did you mean:
+
+  command 'mongo' from deb mongodb-clients
+
+
+> show collections;
+Customers
+> db.Customers.aggregate(
+...    [
+...      {
+...        $group:
+...          {
+...            "_id": "$custid",
+...            "max_bal": { $max: "$accountbalance" },
+...            "min_bal": { $min: "$accountbalance" }
+...          }
+...      }
+...    ]
+... );
+{ "_id" : 1, "max_bal" : 2000, "min_bal" : 2000 }
+{ "_id" : 5, "max_bal" : 500000, "min_bal" : 90000 }
+{ "_id" : 2, "max_bal" : 400, "min_bal" : 400 }
+{ "_id" : 4, "max_bal" : 50000, "min_bal" : 50000 }
+{ "_id" : 6, "max_bal" : 50000, "min_bal" : 50000 }
+{ "_id" : 3, "max_bal" : 5000, "min_bal" : 5000 }
