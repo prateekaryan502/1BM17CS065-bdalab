@@ -1,0 +1,4 @@
+start-dfs.sh
+start-yarn.sh
+hdfs dfs -put /home/hdoop/Average/1909.txt
+hadoop jar /home/hdoop/bda-lab/average/average.jar AverageDriver  /average/test.txt /average/output
