@@ -1,0 +1,36 @@
+1) su hduser
+2) cd /
+3) cd /usr/local/hadoop/sbin
+4) ./start-dfs.sh
+5) ./start-yarn.sh
+6) jps
+7)cd ..
+8)create a file on Desktop(file1.txt) and type the below lines:
+hi how are you
+how is your job
+how is your family
+how is your brother
+how is your sister
+
+save your file
+
+being in hadoop folder
+
+hadoop fs -ls /
+
+If there is no directory existing, Create a directory using the following command. If any directory existing, use the same directory for the command ha
+hadoop fs -mkdir /rgs1
+
+10))hadoop fs -copyFromLocal /home/hdoop/Desktop/file1.txt(local file system file name)   /rgs1/test.txt
+(hadoop file system file name)
+
+hadoop fs -copyFromLocal /home/hdoop/bda-lab/hadoop-WordCount-ScreeShots/file1.txt  /rgs1/test.txt
+
+11)hadoop jar /home/hdoop/Desktop/wordcount.jar wordcount.WordCount(.class file name which is created in jar) /rgs1/test.txt  /rgs1/output/(To run the jar file)
+hadoop jar /home/hdoop/bda-lab/hadoop-WordCount-ScreeShots/wordcount.jar WordCount  /rgs1/test.txt /rgs1/output
+
+12)Check where the output is stored by typing command  -   hadoop fs -ls /rgs1
+
+12)hadoop fs -cat /output/part-00000(to view the output)
+hadoop fs -ls /rgs1/output/part-r-00000
+13)hadoop fs -ls /out/( To view the contents of a directory)
